@@ -1,19 +1,3 @@
-terraform {
-  cloud {
-    organization = "tech-challenger"
-
-    workspaces {
-      name = "tech-challenger-fiap-bd-infra"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
-
-data "aws_availability_zones" "available" {} # TODO - perguntar ao chat gpt
-
 # TODO - Verificar se precisar criar manualmente essas VPC
 module "vpc" { 
   source  = "terraform-aws-modules/vpc/aws"
@@ -25,12 +9,14 @@ module "vpc" {
   public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
   enable_dns_hostnames = true
   enable_dns_support   = true
+  enable_classiclink   = false
+  enable_classiclink_dns_support = false
 }
 
 # TODO - Verificar se precisa criar manualmente
 resource "aws_db_subnet_group" "tech-challenger-db-subnet-group" {
   name       = "tech-challenger-db-subnet-group"
-  subnet_ids = ["subnet-12345678", "subnet-87654321"] # Substitua pelos IDs das suas sub-redes
+  subnet_ids = module.vpc.public_subnets
 
   tags = {
     Name = "tech-challenger-db-subnet-group"
@@ -56,7 +42,7 @@ resource "aws_db_instance" "tech-challenger-pgsql-rds-db" {
   username               = "postgres"
   password               = var.db_password # TODO - perguntar ao chat gpt de onde vem
   db_subnet_group_name   = aws_db_subnet_group.tech-challenger-db-subnet-group.name
-  vpc_security_group_ids = [module.vpc.default_security_group_id] # Adicione a referência ao grupo de segurança padrão da VPC
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
   parameter_group_name   = aws_db_parameter_group.tech-challenger-db-parameter-group.name
   publicly_accessible    = true
   skip_final_snapshot    = true
