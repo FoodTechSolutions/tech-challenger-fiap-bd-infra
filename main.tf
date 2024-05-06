@@ -1,5 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
 terraform {
   cloud {
     organization = "tech-challenger"
@@ -32,34 +30,10 @@ module "vpc" {
 # TODO - Verificar se precisa criar manualmente
 resource "aws_db_subnet_group" "tech-challenger-db-subnet-group" {
   name       = "tech-challenger-db-subnet-group"
-  subnet_ids = module.vpc.public_subnets
+  subnet_ids = ["subnet-12345678", "subnet-87654321"] # Substitua pelos IDs das suas sub-redes
 
   tags = {
     Name = "tech-challenger-db-subnet-group"
-  }
-}
-
-# TODO - Verificar se precisa criar manualmente
-resource "aws_security_group" "rds" {
-  name   = "tech-challenger-rds"
-  vpc_id = module.vpc.vpc_id
-
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "tech-challenger-rds"
   }
 }
 
@@ -78,11 +52,11 @@ resource "aws_db_instance" "tech-challenger-pgsql-rds-db" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "16.1"
+  engine_version         = "12.5" # Versão corrigida
   username               = "postgres"
   password               = var.db_password # TODO - perguntar ao chat gpt de onde vem
   db_subnet_group_name   = aws_db_subnet_group.tech-challenger-db-subnet-group.name
-  vpc_security_group_ids = [aws_security_group.rds.id]
+  vpc_security_group_ids = [module.vpc.default_security_group_id] # Adicione a referência ao grupo de segurança padrão da VPC
   parameter_group_name   = aws_db_parameter_group.tech-challenger-db-parameter-group.name
   publicly_accessible    = true
   skip_final_snapshot    = true

@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  TF_CLOUD_ORGANIZATION: "tasteease"
+  TF_CLOUD_ORGANIZATION: "tech-challenger"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "tech-challenger-fiap-bd-infra"
   CONFIG_DIRECTORY: "./"
