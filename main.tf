@@ -5,7 +5,7 @@ terraform {
     organization = "tech-challenger"
 
     workspaces {
-      name = "tech-challenger-tf"
+      name = "tech-challenger-fiap-bd-infra"
     }
   }
 }
