@@ -1,3 +1,11 @@
+
+provider "aws" {
+  region = var.region
+}
+
+data "aws_caller_identity" "current" {}
+data "aws_availability_zones" "available" {}
+
 # TODO - Verificar se precisar criar manualmente essas VPC
 module "vpc" { 
   source  = "terraform-aws-modules/vpc/aws"
@@ -13,10 +21,6 @@ module "vpc" {
 
   enable_dns_hostnames = true
   enable_dns_support   = true
-}
-
-provider "aws" {
-  region = var.region
 }
 
 # TODO - Verificar se precisa criar manualmente
