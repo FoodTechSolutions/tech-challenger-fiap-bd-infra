@@ -10,3 +10,13 @@ variable "db_password" {
   description = "RDS root user password"
   type        = string
 }
+
+variable "aws_access_key" {
+  description = "AWS ACCESS KEY"
+  type        = string
+}
+
+variable "aws_secret_key" {
+  description = "AWS KEY"
+  type        = string
+}
