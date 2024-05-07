@@ -21,7 +21,7 @@ variable "aws_secret_key" {
   type        = string
 }
 
-variable "aws_session_token" {
+variable "AWS_SECURITY_TOKEN" {
   description = "AWS SESSION TOKEN"
   type        = string
 }
