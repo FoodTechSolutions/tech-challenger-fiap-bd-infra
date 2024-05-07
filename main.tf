@@ -1,9 +1,9 @@
 
 provider "aws" {
   region = var.region
-  # access_key = var.aws_access_key
-  # secret_key = var.aws_secret_key
-  # token = var.AWS_SECURITY_TOKEN
+  access_key = "ASIAZ6D4PINXRK5KOIOO"
+  secret_key = "Z+wCTCQp6Eb4FK2Ure9R46ZHOBmF/thHnt4OsnWts"
+  token = "IQoJb3JpZ2luX2VjEHAaCXVzLXdlc3QtMiJIMEYCIQDd35kJdQ4ATYrmhngI/+NXSXQIGaqQ+bwFXx7lxxgQRgIhAItxnF347tmvR/lvntgVUqxNAnnsRLzJW+iqcb4W2kOTKrsCCMn//////////wEQARoMNjgzMTYwODQ3MjE1IgxIjvv/dHJVND7329wqjwIqRO8NO3iz5j4HZWZJUaCRGIX6fO4VTdv2pZH1KsWhuLjv467PVLf1fjYGNGJG2oABhVZcUbCyZZM09q1poj8SJzdv1KjuO3kmAPhqCfTQWd4eUcZq6CU1LJhLoBCUL8BCKe07Vh1X4uR2pj7cjoAynMNJcYa8R5B600O0eY/nm1wGTf+nxSECaPeBYLV5m028JaE+qeGtY8f09TeacSuUw/bAhCslLDgn/5UNdXhv4eeUiMWlKW0eYIY52p6DwFZ4RRZRPzDSkXTnQwZn5jhHMpAOoXDDVHaPEplk2qSGjNpmyucTfGWWw2I053iKDIofL9ZzEXlOxX0U4h0RNxwv0nMPOi8RL8pP6RfggBUNMOnk5bEGOpwBDIBwBKKocpXIEOCEVkKwm42eyuEpLQ6WHTBwH9uTFuHXXh1Y8O4fRWca/pTns9sSQWcmp7r0rwQGly2w++1xKZosuUCG3cEYRexUmtLEei4n4aS/I7HWQKuVyWVRM7XMi0C9bZdZO3uMNeGhzSu5qAHS7mfIqW3rfOOlyBpBkSN4evDjTrIyH8TeHXMoHaXi3qonCuReZFsPg+nU"
 }
 
 data "aws_caller_identity" "current" {}
