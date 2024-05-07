@@ -50,7 +50,7 @@ resource "aws_db_instance" "tech-challenger-pgsql-rds-db" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "12.5" # Versão corrigida
+  engine_version         = "14"
   username               = "postgres"
   password               = var.db_password # TODO - perguntar ao chat gpt de onde vem
   db_subnet_group_name   = aws_db_subnet_group.tech-challenger-db-subnet-group.name
