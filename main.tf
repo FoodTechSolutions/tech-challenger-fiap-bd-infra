@@ -1,8 +1,9 @@
 
 provider "aws" {
   region = var.region
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  # access_key = var.aws_access_key
+  # secret_key = var.aws_secret_key
+  # token = var.AWS_SECURITY_TOKEN
 }
 
 data "aws_caller_identity" "current" {}
