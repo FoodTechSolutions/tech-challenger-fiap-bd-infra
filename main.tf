@@ -1,9 +1,9 @@
 
 provider "aws" {
   region = var.region
-  # access_key = "ASIAZ6D4PINXRK5KOIOO"
-  # secret_key = "Z+wCTCQp6Eb4FK2Ure9R46ZHOBmF/thHnt4OsnWts"
-  token = var.AWS_SECURITY_TOKEN
+  # access_key = var.aws_access_key
+  # secret_key = var.aws_secret_key
+  # token = var.AWS_SECURITY_TOKEN
 }
 
 data "aws_caller_identity" "current" {}
@@ -38,7 +38,7 @@ resource "aws_db_subnet_group" "tech-challenger-db-subnet-group" {
 
 resource "aws_db_parameter_group" "tech-challenger-db-parameter-group" {
   name   = "tech-challenger-db-parameter-group"
-  family = "postgres16"
+  family = "postgres14"
 
   parameter {
     name  = "log_connections"
